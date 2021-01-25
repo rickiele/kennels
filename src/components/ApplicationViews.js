@@ -7,7 +7,9 @@ import { CustomerProvider } from "./customer/CustomerProvider"
 import { CustomerList } from "./customer/CustomerList"
 import { EmployeeProvider } from "./employee/EmployeeProvider"
 import { EmployeeList } from "./employee/EmployeeList"
-import { LocationCard } from "./location/LocationCard"
+import { LocationProvider } from "./location/LocationProvider"
+import { LocationList } from "./location/LocationList"
+
 
 export const ApplicationViews = () => {
     return (
@@ -25,10 +27,12 @@ export const ApplicationViews = () => {
             </AnimalProvider>
 
             {/* Render the animal list when http://localhost:3000/locations */}
+            <LocationProvider>
             <Route path="/locations">
-                <LocationCard />
+                <LocationList />
             </Route>
-            
+            </LocationProvider>
+
             {/* Render the animal list when http://localhost:3000/customers */}
             <CustomerProvider>
             <Route path="/customers">
