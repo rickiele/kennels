@@ -1,28 +1,33 @@
 import React, { useContext, useEffect } from "react"
+import { useHistory } from "react-router-dom" 
 import { AnimalContext } from "./AnimalProvider"
+import { LocationContext } from "../location/LocationProvider"
+import { CustomerContext } from "../customer/CustomerProvider"
 import { AnimalCard } from "./AnimalCard"
 import "./Animal.css"
 
+// ... // When you see "..." in example code, it basically means "etc"
+
 export const AnimalList = () => {
-  // This state changes when `getAnimals()` is invoked below
-  const { animals, getAnimals } = useContext(AnimalContext)
+    const { animals, getAnimals } = useContext(AnimalContext)
+    const { locations, getLocations } = useContext(LocationContext)
+    const { customers, getCustomers } = useContext(CustomerContext)
+    
+    // The useHistory hook let's us tell React which route we want to visit. We will use it to tell React to render the animal form component.
+    const history = useHistory()
 
-  //useEffect - reach out to the world for something
-  useEffect(() => {
-    console.log("AnimalList: useEffect - getAnimals")
-    getAnimals()
-
-  }, [])
-
-
-  return (
-    <div className="animals">
-      {console.log("AnimalList: Render", animals)}
-      {
-        animals.map(animal => {
-          return <AnimalCard key={animal.id} animal={animal} />
-        })
-      }
-    </div>
-  )
+    return (
+        <div className="animals">
+          <h2>Animals</h2>
+		      <button onClick={() => {history.push("/animals/create")}}>
+            Add Animal
+          </button>
+          {
+            animals.map(animal => {
+              const owner = customers.find(c => c.id === animal.customerId)
+              return <AnimalCard key={animal.id} animal={animal} owner={owner} />
+            })
+          }
+        </div>
+    )
 }
