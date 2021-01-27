@@ -20,21 +20,27 @@ export const ApplicationViews = () => {
                 <Home />
             </Route>
 
-            {/* Render the animal list when http://localhost:3000/animals */}
+            {/* Note that the <AnimalList> component is a child of the <AnimalProvider> component. 
+                It is crucial that you wrap components that need data with the provider component that 
+                exposes that data in JSX. You can wrap a component in as many providers as needed.
+             */}
+            
             <AnimalProvider>
-							<LocationProvider>
-								<CustomerProvider>
-									{/* Note the addition of "exact" now that we have an additional route with "/animals" in it below this Route: "/animals/create" */}
-									<Route exact path="/animals">
-										<AnimalList />
-									</Route>
+                <LocationProvider>
+                    <CustomerProvider>
+                    {/* Note the addition of "exact" now that we have an additional route with "/animals" in it below this Route: "/animals/create" */}
+                    
+                    <Route exact path="/animals">
+                        <AnimalList />
+                    </Route>
 
-									<Route path="/animals/create">
-										<AnimalForm />
-									</Route>
-								</CustomerProvider>
-							</LocationProvider>
-						</AnimalProvider>
+                    <Route path="/animals/create">
+                        <AnimalForm />
+                    </Route>
+                    
+                    </CustomerProvider>
+                </LocationProvider>
+            </AnimalProvider>
 
             {/* Render the animal list when http://localhost:3000/locations */}
             <LocationProvider>
