@@ -24,7 +24,7 @@ export const ApplicationViews = () => {
                 It is crucial that you wrap components that need data with the provider component that 
                 exposes that data in JSX. You can wrap a component in as many providers as needed.
              */}
-            
+            {/* localhost:3000/animals */}
             <AnimalProvider>
                 <LocationProvider>
                     <CustomerProvider>
@@ -37,7 +37,7 @@ export const ApplicationViews = () => {
                     <Route path="/animals/create">
                         <AnimalForm />
                     </Route>
-                    
+
                     </CustomerProvider>
                 </LocationProvider>
             </AnimalProvider>
@@ -57,11 +57,17 @@ export const ApplicationViews = () => {
             </CustomerProvider>
 
             {/* Render the animal list when http://localhost:3000/employees */}
-            <EmployeeProvider>
-            <Route path="/employees">
-                <EmployeeList />
-            </Route>
-            </EmployeeProvider>
+            <LocationProvider>
+                <EmployeeProvider>
+                    <Route path="/employees">
+                        <EmployeeList />
+                    </Route>
+
+                    <Route path="/employees/create">
+                        <EmployeeList />
+                    </Route>
+                </EmployeeProvider>
+            </LocationProvider>
 
         </>
     )

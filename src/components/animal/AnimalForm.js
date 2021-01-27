@@ -37,6 +37,7 @@ export const AnimalForm = () => {
         // NOTE! What's happening in this function can be very difficult to grasp. Read it over many times and ask a lot questions about it.
     //Controlled component
     const handleControlledInputChange = (event) => {
+
       /* When changing a state object or array,
       always create a copy, make changes, and then set state.*/
       const newAnimal = { ...animal }
@@ -45,6 +46,7 @@ export const AnimalForm = () => {
       if (event.target.id.includes("Id")) {
         selectedVal = parseInt(selectedVal)
       }
+      
       /* Animal is an object with properties.
       Set the property to the new value
       using object bracket notation. */

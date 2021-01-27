@@ -1,7 +1,7 @@
 import React from "react"
 import "./Animal.css"
 
-/*  */
+/* { animal } is an object */
 export const AnimalCard = ({ animal }) => (
     <section className="animal">
         <h3 className="animal__name">{animal.name}</h3>

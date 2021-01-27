@@ -40,21 +40,26 @@ export const AnimalList = () => {
     /* the key, animal, owner, and location arguments are propeties on an object 
        that gets passed in as an argument  */
     return (
-        <div className="animals">
+      <div className="animals">
+
           <h2>Animals</h2>
+
+              {
+                animals.map(animal => {
+                  const owner = customers.find(c => c.id === animal.customerId)
+                  const clinic = locations.find(c => c.id === animal.locationId)
+                  
+                  return <AnimalCard key={animal.id} 
+                    animal={animal} 
+                    owner={owner} 
+                    location={clinic} />
+                })
+              }
+
 		      <button onClick={() => {history.push("/animals/create")}}>
             Add Animal
           </button>
-          {
-            animals.map(animal => {
-              const owner = customers.find(c => c.id === animal.customerId)
-              const clinic = locations.find(c => c.id === animal.locationId)
-              return <AnimalCard key={animal.id} 
-                animal={animal} 
-                owner={owner} 
-                location={clinic} />
-            })
-          }
+
         </div>
     )
 }
